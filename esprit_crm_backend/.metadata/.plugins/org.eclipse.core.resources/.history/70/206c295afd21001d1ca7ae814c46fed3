@@ -1,0 +1,107 @@
+package tn.espritcrm.entities;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.time.temporal.Temporal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table (name = "Reclamations")
+public class Reclamations  {
+
+	
+	
+	public enum Type {
+		Stage , Finance , Compte , Note , Absence , Autre 
+		
+		
+	}
+	
+	
+	// Variables 
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	
+	
+	
+	
+
+	private int id ; 
+	
+	
+	private Date date ; 
+	
+	private String description ; 
+	
+	private String typeR ;
+	
+	
+	// Constructors 
+	
+	
+	public Reclamations() // default
+	{
+		
+		super();
+		
+	}
+	
+	
+	public Reclamations(int id_r, Date date, String description, String typeR) {
+		super();
+		this.id = id;
+		this.date = date;
+		this.description = description;
+		this.typeR = typeR;
+	}
+	
+	
+	// GETTERS ET SETTERS 
+	public int getId_r() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
+	public String getTypeR() {
+		return typeR;
+	}
+	public void setTypeR(String typeR) {
+		this.typeR = typeR;
+	}
+	@Override
+	public String toString() {
+		return "Reclamations [id_r=" + id + ", date=" + date + ", description=" + description + ", typeR=" + typeR
+				+ "]";
+	} 
+	
+	
+
+	
+	
+}

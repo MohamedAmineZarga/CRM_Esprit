@@ -1,0 +1,139 @@
+package tn.espritcrm.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import tn.espritcrm.exception.ResourceNotFoundException;
+import tn.espritcrm.entities.Reclamations;
+import tn.espritcrm.repository.ReclamationsRepository;
+
+
+
+@CrossOrigin(origins = "http://localhost:8090")
+@RestController
+@RequestMapping("/api/v1/")
+
+
+
+
+
+
+
+public class ReclamationsController {
+
+
+	
+	
+	@Autowired
+	private ReclamationsRepository ReclamationsRepository;
+	
+	
+	
+	// get all Reclamations 
+	//  WORK 
+	@GetMapping("/Reclamations")
+	public List<Reclamations> getAllReclamations(){
+		return ReclamationsRepository.findAll();
+	}		
+	
+	
+	
+	
+	
+	 // create Reclamations rest API
+	@PostMapping("/Reclamations")
+	public Reclamations createReclamations(@RequestBody Reclamations newReclamation ) {
+		return ReclamationsRepository.save(newReclamation);
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// get Reclamations by id rest API 
+	@GetMapping("/Reclamations/{id_r}")
+	public ResponseEntity<Reclamations> getReclamationsById(@PathVariable Long id_r) {
+		
+	
+		
+		Reclamations Reclamations = ReclamationsRepository.findById(id_r)
+				.orElseThrow(() -> new ResourceNotFoundException("Reclamations not exist with id :" + id_r));
+		
+		
+
+		
+		
+		return ResponseEntity.ok(Reclamations);
+		
+
+		
+	}
+	
+	
+	
+	
+	
+	// update Reclamations rest api
+	
+	@PutMapping("/Reclamations/{id_r}")
+	public ResponseEntity<Reclamations> updateReclamations(@PathVariable (value = "id_r") Long id_r, 
+			@Valid @RequestBody Reclamations ReclamationsDetails) {
+		Reclamations Reclamations = ReclamationsRepository.findById(id_r)
+				.orElseThrow(() -> new ResourceNotFoundException("Reclamations not exist with id :" + id_r));
+		
+		Reclamations.setId_r(ReclamationsDetails.getId_r());
+		//Reclamations.setDate(ReclamationsDetails.getDate());
+		Reclamations.setTypeR(ReclamationsDetails.getTypeR());
+		Reclamations.setDescription(ReclamationsDetails.getDescription());
+		
+		
+		Reclamations updatedReclamations = ReclamationsRepository.save(Reclamations);
+		return ResponseEntity.ok(updatedReclamations);
+	}
+	
+	// delete Reclamations rest api
+	@DeleteMapping("/Reclamations/{id_r}")
+	public ResponseEntity<Map<String, Boolean>> deleteReclamations(@PathVariable Long id_r){
+		Reclamations Reclamations = ReclamationsRepository.findById(id_r)
+				.orElseThrow(() -> new ResourceNotFoundException("Reclamations not exist with id :" + id_r));
+		
+		ReclamationsRepository.delete(Reclamations);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(response);
+	}
+	
+	
+
+	
+
+	
+	
+}

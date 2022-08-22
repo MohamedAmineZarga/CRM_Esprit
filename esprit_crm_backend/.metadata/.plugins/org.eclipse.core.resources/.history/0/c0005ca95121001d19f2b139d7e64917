@@ -1,0 +1,27 @@
+package tn.espritcrm.entities;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.time.temporal.Temporal; 
+
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+
+@Entity
+@Table (name = "TableReclmations")
+public class Reclamations implements Serializable {
+
+	
+	private int id_r ; 
+	private Date date ; 
+	private String description ; 
+	private Type typeR ; 
+	
+	
+	
+	
+	
+	
+}

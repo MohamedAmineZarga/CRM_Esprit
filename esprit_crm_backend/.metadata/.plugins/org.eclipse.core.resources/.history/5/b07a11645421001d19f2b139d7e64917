@@ -1,0 +1,5 @@
+package tn.espritcrm.exception;
+
+public class ResourceNotFoundException {
+
+}

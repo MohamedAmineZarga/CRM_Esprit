@@ -1,0 +1,7 @@
+package tn.espritcrm.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReclamationsRepository extends JpaRepository<T, ID> {
+
+}

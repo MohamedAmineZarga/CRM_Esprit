@@ -1,0 +1,5 @@
+package tn.espritcrm.entities;
+
+public class Comptes {
+
+}

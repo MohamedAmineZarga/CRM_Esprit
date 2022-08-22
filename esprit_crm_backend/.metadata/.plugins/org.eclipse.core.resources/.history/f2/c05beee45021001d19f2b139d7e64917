@@ -1,0 +1,14 @@
+package tn.espritcrm.entities;
+
+import java.util.Date;
+
+public class Reclamations implements Serializable {
+
+	private int id_r ; 
+	private Date date ; 
+	private String description ; 
+	private String 
+	
+	
+	
+}

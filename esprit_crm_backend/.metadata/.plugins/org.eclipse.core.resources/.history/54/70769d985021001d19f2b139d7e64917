@@ -1,0 +1,13 @@
+package tn.espritcrm.entities;
+
+import java.util.Date;
+
+public class Reclamations {
+
+	private int id_r ; 
+	private Date date ; 
+	
+	
+	
+	
+}
