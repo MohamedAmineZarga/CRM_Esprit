@@ -2,7 +2,7 @@ package tn.espritcrm.entities;
 
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;

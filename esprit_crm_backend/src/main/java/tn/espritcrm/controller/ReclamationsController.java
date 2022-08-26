@@ -31,10 +31,10 @@ import tn.espritcrm.repository.ReclamationsRepository;
 
 
 
-@CrossOrigin(origins = "http://localhost:8090")
-@RestController
-@RequestMapping("/api/v1/")
 
+@RestController
+@CrossOrigin(origins = "http://localhost:6650")
+@RequestMapping("/api/v1/Reclamations")
 
 
 
